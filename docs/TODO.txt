@@ -1,0 +1,17 @@
+- query returns List<Row> (should this return a PagedList<Row>?)
+- queryOne returns Row
+- broker.query(sql, params, new Budget()); -> returns the Budget instance populated with data
+	+ Simple mapping -> put @Column annotations on properties and do mapping that way
+		o How to map a property of type Money?
+	+ Complex mapping -> what are the options here?
+		o Pass in a RowMapper instance along with the object
+		o Better idea, have Budget implement the RelationalMappable interface which gives SQLBroker access to a ResultSetMapper, or just
+		  puts a method on Budget that accepts a ResultSet and Budget can figure out what to do with it
+			- Putting a raw ResultSet into the hands of developers is dangerous...better wrap it with a class that restricts what they can do
+	+ Ok this works for a single record, but what about a query that returns multiple records?
+		o How about broker.query(sql, params, Budget.class) so that SQLBroker can create however many Budget instances it needs?
+
+
+
+
+http://propelorm.org/ -> Some good stuff, some not so good stuff
