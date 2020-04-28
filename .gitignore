@@ -8,6 +8,10 @@
 *.war
 *.ear
 
+# build/dist directory
+!build/dist/*.zip
+!build/dist/*.jar
+
 # lib directory
 !lib/*.zip
 !lib/*.jar

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="SQLBroker" default="buildJar" basedir="..">
+
+	<!-- Load environment and file properties -->
+	<property environment="env"/>
+	<property file="build/build.properties"/>
+
+	<!-- Define the classpath for this project -->
+	<path id="classpath">
+		<pathelement location="."/>
+		<pathelement location="${lib}/root-0.5.jar"/>
+	</path>
+
+	<!-- Make sure we are using JDK 1.7 -->
+	<fail message="Unsupported Java version: ${ant.java.version}. Make sure the Java version is 1.7 ONLY.">
+		<condition>
+			<not>
+				<equals arg1="${ant.java.version}" arg2="1.7"/>
+			</not>
+		</condition>
+	</fail>
+
+	<!-- Print the current Java version used by Ant -->
+	<target name="print-version">
+		<echo>Java/JVM version: ${ant.java.version}</echo>
+		<echo>Java/JVM detail version: ${java.version}</echo>
+	</target>
+
+	<!-- Delete all directories and files created during the build -->
+	<target name="clean" depends="print-version">
+		<delete dir="${classdir}"/>
+		<delete dir="${distdir}"/>
+	</target>
+
+	<!-- Recreate the build directory structure -->
+	<target name="prepare" depends="clean">
+		<mkdir dir="${classdir}"/>
+		<mkdir dir="${distdir}"/>
+	</target>
+
+	<!-- Compile all project-level source code -->
+	<target name="build" depends="prepare">
+		<javac includeantruntime="false" srcdir="${src}" destdir="${classdir}" debug="on" includes="org/sqlbroker/**/*.java">
+			<classpath refid="classpath"/>
+		</javac>
+	</target>
+
+	<!-- Build JAR file and generate source zip file -->
+	<target name="buildJar" depends="build">
+		<jar jarfile="${distdir}/${jarFile}" basedir="${classdir}"/>
+		<zip destfile="${distdir}/${srcFile}" basedir="${src}" includes="**/*.java"/>
+	</target>
+
+	<!-- Migrate JAR to all dependent projects -->
+	<target name="migrate" depends="buildJar">
+		<copy file="${distdir}/${jarFile}" todir="${basedir}/../SQLBroker/lib"/>
+		<copy file="${distdir}/${jarFile}" todir="${basedir}/../SecurityBroker/lib"/>
+		<copy file="${distdir}/${jarFile}" todir="${basedir}/../Security/WebContent/WEB-INF/lib"/>
+	</target>
+
+</project>
