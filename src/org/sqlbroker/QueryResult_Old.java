@@ -9,8 +9,8 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Iterator;
 
-import root.data.structure.MapHashed;
-import root.lang.ParamStr;
+import root.adt.MapHashed;
+import root.lang.ParamString;
 
 /**
  * SQLResults stores the results of a sql query in the form of objects stored in an Arraylist
@@ -67,7 +67,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 	 * Creates a <code>QueryResults</code> instance from an open
 	 * {@link ResultSet}. Stores all of the row data in an {@link SList} of
 	 * {@link Row} objects for offline data retrieval.
-	 * 
+	 *
 	 * @param rs		The {@link ResultSet} to extract results from.
 	 * @throws SQLException
 	 */
@@ -79,7 +79,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 
 	public final QueryResult_Old expect(final int expected) {
 		if (expected != rows.size) {
-			throw new AssertionError(ParamStr.format("Expected: {P} Actual: {P}", expected, rows.size));
+			throw new AssertionError(ParamString.formatMsg("Expected: {P} Actual: {P}", expected, rows.size));
 		}
 
 		return this;
@@ -147,7 +147,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 		/**
 		 * Returns the value at the specified column index as a
 		 * {@link BigDecimal}.
-		 * 
+		 *
 		 * @param i	The column index
 		 * @return	the {@link BigDecimal} at the specified column index.
 		 */
@@ -162,7 +162,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 		/**
 		 * Returns the value mapped to the specified column name as a
 		 * {@link BigDecimal}.
-		 * 
+		 *
 		 * @param colName	The name of the column whose value to fetch.
 		 * @return a {@link BigDecimal} mapped to the column name.
 		 */
@@ -177,7 +177,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 		/**
 		 * Returns the value at the specified column index as a
 		 * <code>boolean</code>.
-		 * 
+		 *
 		 * @param i	The column index
 		 * @return	the <code>boolean</code> at the specified column index.
 		 */
@@ -190,7 +190,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 		/**
 		 * Returns the value mapped to the specified column name as a
 		 * <code>boolean</code>.
-		 * 
+		 *
 		 * @param colName	The name of the column whose value to fetch.
 		 * @return a <code>boolean</code> mapped to the column name.
 		 */
@@ -202,7 +202,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 
 		/**
 		 * Returns the value at the specified column index as a <code>byte</code>.
-		 * 
+		 *
 		 * @param i	The column index
 		 * @return	the <code>byte</code> at the specified column index.
 		 */
@@ -215,7 +215,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 		/**
 		 * Returns the value mapped to the specified column name as a
 		 * <code>byte</code>.
-		 * 
+		 *
 		 * @param colName	The name of the column whose value to fetch.
 		 * @return a <code>byte</code> mapped to the column name.
 		 */
@@ -227,7 +227,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 
 		/**
 		 * Returns the value at the specified column index as a <code>char</code>.
-		 * 
+		 *
 		 * @param i	The column index
 		 * @return	the <code>char</code> at the specified column index.
 		 */
@@ -240,7 +240,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 		/**
 		 * Returns the value mapped to the specified column name as a
 		 * <code>char</code>.
-		 * 
+		 *
 		 * @param colName	The name of the column whose value to fetch.
 		 * @return a <code>char</code> mapped to the column name.
 		 */
@@ -252,7 +252,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 
 		/**
 		 * Returns the value at the specified column index as a {@link Date}.
-		 * 
+		 *
 		 * @param i	The column index
 		 * @return	the {@link Date} at the specified column index.
 		 */
@@ -263,7 +263,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 		/**
 		 * Returns the value mapped to the specified column name as an
 		 * {@link Date}.
-		 * 
+		 *
 		 * @param colName	The name of the column whose value to fetch.
 		 * @return an {@link Date} mapped to the column name.
 		 */
@@ -274,7 +274,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 		/**
 		 * Returns the value at the specified column index as a
 		 * <code>double</code>.
-		 * 
+		 *
 		 * @param i	The column index
 		 * @return	the <code>double</code> at the specified column index.
 		 */
@@ -287,7 +287,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 		/**
 		 * Returns the value mapped to the specified column name as a
 		 * <code>double</code>.
-		 * 
+		 *
 		 * @param colName	The name of the column whose value to fetch.
 		 * @return a <code>double</code> mapped to the column name.
 		 */
@@ -299,7 +299,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 
 		/**
 		 * Returns the value at the specified column index as a <code>float</code>.
-		 * 
+		 *
 		 * @param i	The column index
 		 * @return	the <code>float</code> at the specified column index.
 		 */
@@ -312,7 +312,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 		/**
 		 * Returns the value mapped to the specified column name as a
 		 * <code>float</code>.
-		 * 
+		 *
 		 * @param colName	The name of the column whose value to fetch.
 		 * @return a <code>float</code> mapped to the column name.
 		 */
@@ -324,7 +324,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 
 		/**
 		 * Returns the value at the specified column index as an <code>int</code>.
-		 * 
+		 *
 		 * @param i	The column index
 		 * @return	the <code>int</code> at the specified column index.
 		 */
@@ -337,7 +337,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 		/**
 		 * Returns the value mapped to the specified column name as an
 		 * <code>int</code>.
-		 * 
+		 *
 		 * @param colName	The name of the column whose value to fetch.
 		 * @return an <code>int</code> mapped to the column name.
 		 */
@@ -349,7 +349,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 
 		/**
 		 * Returns an <code>int[]</code> based on the column names submitted.
-		 * 
+		 *
 		 * @param colNames	The column names.
 		 * @return an <code>int[]</code> based on the column names submitted.
 		 */
@@ -365,7 +365,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 
 		/**
 		 * Returns the value at the specified column index as a <code>long</code>.
-		 * 
+		 *
 		 * @param i	The column index
 		 * @return	the <code>long</code> at the specified column index.
 		 */
@@ -378,7 +378,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 		/**
 		 * Returns the value mapped to the specified column name as a
 		 * <code>long</code>.
-		 * 
+		 *
 		 * @param colName	The name of the column whose value to fetch.
 		 * @return a <code>long</code> mapped to the column name.
 		 */
@@ -390,7 +390,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 
 		/**
 		 * Returns the value at the specified column index as an {@link Object}.
-		 * 
+		 *
 		 * @param i	The column index
 		 * @return	the {@link Object} at the specified column index.
 		 */
@@ -401,7 +401,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 		/**
 		 * Returns the value mapped to the specified column name as an
 		 * {@link Object}.
-		 * 
+		 *
 		 * @param colName	The name of the column whose value to fetch.
 		 * @return an {@link Object} mapped to the column name.
 		 */
@@ -411,7 +411,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 
 		/**
 		 * Returns the value at the specified column index as a <code>short</code>.
-		 * 
+		 *
 		 * @param i	The column index
 		 * @return	the <code>short</code> at the specified column index.
 		 */
@@ -424,7 +424,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 		/**
 		 * Returns the value mapped to the specified column name as a
 		 * <code>short</code>.
-		 * 
+		 *
 		 * @param colName	The name of the column whose value to fetch.
 		 * @return a <code>short</code> mapped to the column name.
 		 */
@@ -436,7 +436,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 
 		/**
 		 * Returns the value at the specified column index as a {@link String}.
-		 * 
+		 *
 		 * @param i	The column index
 		 * @return	the {@link String} at the specified column index.
 		 */
@@ -449,7 +449,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 		/**
 		 * Returns the value mapped to the specified column name as a
 		 * {@link String}.
-		 * 
+		 *
 		 * @param colName	The name of the column whose value to fetch.
 		 * @return an {@link String} mapped to the column name.
 		 */
@@ -461,7 +461,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 
 		/**
 		 * Returns the value at the specified column index as a {@link Time}.
-		 * 
+		 *
 		 * @param i	The column index
 		 * @return	the {@link Time} at the specified column index.
 		 */
@@ -472,7 +472,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 		/**
 		 * Returns the value mapped to the specified column name as a
 		 * {@link Time}.
-		 * 
+		 *
 		 * @param colName	The name of the column whose value to fetch.
 		 * @return an {@link Time} mapped to the column name.
 		 */
@@ -483,7 +483,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 		/**
 		 * Returns the value at the specified column index as a
 		 * {@link Timestamp}.
-		 * 
+		 *
 		 * @param i	The column index
 		 * @return	the {@link Timestamp} at the specified column index.
 		 */
@@ -494,7 +494,7 @@ public final class QueryResult_Old implements Iterable<QueryResult_Old.Row> {
 		/**
 		 * Returns the value mapped to the specified column name as a
 		 * {@link Timestamp}.
-		 * 
+		 *
 		 * @param colName	The name of the column whose value to fetch.
 		 * @return an {@link Timestamp} mapped to the column name.
 		 */

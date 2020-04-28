@@ -3,7 +3,7 @@ package org.sqlbroker.mapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import root.data.structure.MapHashed;
+import root.adt.MapHashed;
 
 
 public interface Value<V> {

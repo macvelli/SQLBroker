@@ -33,10 +33,11 @@ public abstract class SQL {
 	final void appendParams(final int numParams) {
 		if (numParams > 0) {
 			buf.append('?');
+
 			for (int i=1; i < numParams; i++) {
-				buf.append(',','?');
+				buf.addSeparator().append('?');
 			}
 		}
 	}
 
-}
+} // End SQL

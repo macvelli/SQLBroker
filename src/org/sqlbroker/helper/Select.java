@@ -1,6 +1,5 @@
 package org.sqlbroker.helper;
 
-import root.lang.Characters;
 import root.lang.StringExtractor;
 
 public final class Select extends Conditional<Select> {
@@ -52,15 +51,16 @@ public final class Select extends Conditional<Select> {
 	private void append(final String[] cols) {
 		if (cols.length > 0) {
 			buf.append(cols[0]);
+
 			for (int i=1; i < cols.length; i++) {
-				buf.append(Characters.separator).append(cols[i]);
+				buf.addSeparator().append(cols[i]);
 			}
 		}
 	}
 
 	/**
 	 * TODO: Delete this method
-	 * 
+	 *
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -79,4 +79,4 @@ public final class Select extends Conditional<Select> {
 		System.out.println(stmt);
 	}
 
-}
+} // End Select

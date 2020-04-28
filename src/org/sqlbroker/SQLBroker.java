@@ -24,7 +24,7 @@ import org.sqlbroker.helper.SQL;
 import org.sqlbroker.helper.Select;
 import org.sqlbroker.mapper.Mapper;
 
-import root.data.structure.ListArray;
+import root.adt.ListArray;
 import root.jdbc.DatabaseException;
 import root.jdbc.PooledConnection;
 import root.jdbc.PooledDataSource;
@@ -54,7 +54,7 @@ import root.util.Jdbc;
  * {@link DataSource} with SQLBroker to maximize performance. The SQLBroker
  * package includes {@link JunctionPoolDatabase} as a tightly-integrated solution
  * and it is recommended to use this implementation whenever possible.
- * 
+ *
  * TODO Think about caching result sizes based upon SQL statement and parameters, or do I even need that if the ListArray grows faster than ArrayList?
  *
  * @author esmith
@@ -179,7 +179,7 @@ public final class SQLBroker {
 	/**
 	 * Watch out and don't use a <code>SELECT COUNT()</code> query, use
 	 * something like <code>SELECT 1</code> instead.
-	 * 
+	 *
 	 * @param stmt
 	 * @return
 	 */
@@ -190,7 +190,7 @@ public final class SQLBroker {
 	/**
 	 * Watch out and don't use a <code>SELECT COUNT()</code> query, use
 	 * something like <code>SELECT 1</code> instead.
-	 * 
+	 *
 	 * @param sql
 	 * @param params
 	 * @return

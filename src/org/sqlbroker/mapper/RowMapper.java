@@ -3,7 +3,7 @@ package org.sqlbroker.mapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import root.lang.ParamStr;
+import root.lang.ParamString;
 
 public class RowMapper<T> implements Mapper<T[]> {
 
@@ -20,7 +20,7 @@ public class RowMapper<T> implements Mapper<T[]> {
 
 	@Override
 	public String toString() {
-		return ParamStr.format("{P}[]", type);
+		return ParamString.formatMsg("{P}[]", type);
 	}
 
-}	// End RowMapper
+} // End RowMapper

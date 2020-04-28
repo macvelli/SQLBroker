@@ -3,7 +3,7 @@ package org.sqlbroker.mapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import root.lang.ParamStr;
+import root.lang.ParamString;
 
 @SuppressWarnings("unchecked")
 public class ColumnMapper<T> implements Mapper<T> {
@@ -36,7 +36,7 @@ public class ColumnMapper<T> implements Mapper<T> {
 
 	@Override
 	public String toString() {
-		return ParamStr.format("{P} from column {P}", type, (colName == null) ? colIndex : colName);
+		return ParamString.formatMsg("{P} from column {P}", type, (colName == null) ? colIndex : colName);
 	}
 
-}	// End ColumnMapper
+} // End ColumnMapper

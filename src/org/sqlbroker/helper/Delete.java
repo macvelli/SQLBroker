@@ -13,7 +13,7 @@ public final class Delete extends Conditional<Delete> {
 
 	/**
 	 * TODO: Delete this method
-	 * 
+	 *
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -24,4 +24,4 @@ public final class Delete extends Conditional<Delete> {
 		System.out.println(stmt);
 	}
 
-}
+} // End Delete

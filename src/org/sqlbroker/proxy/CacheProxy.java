@@ -6,15 +6,15 @@ import java.lang.reflect.Proxy;
 
 import org.sqlbroker.annotation.Cached;
 
-import root.cache.LRUMultiKeyCache;
-import root.data.structure.MapHashed;
+//import root.cache.LRUMultiKeyCache;
+import root.adt.MapHashed;
 import root.log.Log;
 
 /**
  * TODO:
  * 		+ Ok so this only caches at the method level. Pass in the same arguments and get the same result.
  * 		+ So how would one invalidate this cache when a change is made?
- * 
+ *
  * @author esmith
  */
 public final class CacheProxy implements InvocationHandler {
@@ -34,7 +34,8 @@ public final class CacheProxy implements InvocationHandler {
 	private final Object delegate;
 
 	/**	The method names to cache		*/
-	private final MapHashed<Method, LRUMultiKeyCache<Object, Object>> cacheMap;
+//	private final MapHashed<Method, LRUMultiKeyCache<Object, Object>> cacheMap;
+	private final MapHashed<Method, Object> cacheMap;
 
 	// <><><><><><><><><><><><><><>< Constructors ><><><><><><><><><><><><><><>
 
@@ -49,7 +50,7 @@ public final class CacheProxy implements InvocationHandler {
 				c = m.getAnnotation(Cached.class);
 				if (c != null) {
 					log.debug("Creating a {P} element cache for {P}", c.size(), m);
-					cacheMap.put(m, new LRUMultiKeyCache<>(c.size()));
+//					cacheMap.put(m, new LRUMultiKeyCache<>(c.size()));
 				}
 			}
 		}
@@ -58,17 +59,20 @@ public final class CacheProxy implements InvocationHandler {
 	// <><><><><><><><><><><><><><> Public Methods <><><><><><><><><><><><><><>
 
 	public final Object invoke(final Object proxy, final Method m, final Object[] args) throws Throwable {
-		final LRUMultiKeyCache<Object, Object> cache = cacheMap.get(m);
+//		final LRUMultiKeyCache<Object, Object> cache = cacheMap.get(m);
+		final Object cache = cacheMap.get(m);
 
 		if (cache == null) {
 			log.debug("Invoking method {P}: no cache found", m);
 			return m.invoke(delegate, args);
 		}
 
-		Object val = cache.get(args);
+//		Object val = cache.get(args);
+		Object val = null;
+
 		if (val == null) {
 			val = m.invoke(delegate, args);
-			cache.put(args, val);
+//			cache.put(args, val);
 			log.debug("{P}: Put {P} into the cache under {P}", m, val, args);
 		} else {
 			log.debug("{P}: Cache returned {P} for {P}", m, val, args);
@@ -77,4 +81,4 @@ public final class CacheProxy implements InvocationHandler {
 		return val;
 	}
 
-}
+} // End CacheProxy

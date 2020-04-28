@@ -21,7 +21,7 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Map;
 
-import root.data.structure.SetHashed;
+import root.adt.SetHashed;
 import root.jdbc.DatabaseException;
 import root.jdbc.PooledConnection;
 import root.lang.Itemizer;
@@ -32,12 +32,12 @@ import root.util.Jdbc;
  *   and <code>InputStream getUnicodeStream(String columnLabel)</code>.
  * - There are convenience methods such as <code>Boolean getBooleanObject(String columnLabel)</code> to get the
  *   object wrappers for primitive values, which will return <code>null</code> if the database value is missing.
- * 
+ *
  * TODO Figure out how to remove all the throws SQLException (done)
  * TODO getDate() returns a java.sql.Date, make it return a java.util.Date instead
  * TODO Every time the columnLabelSet is checked and a label cannot be found, throw an exception instead of returning null
  * 	- This enforces consistency between column labels used in SQL queries and column labels used in code
- * 
+ *
  * @author esmith
  */
 public final class QueryResult implements Itemizer<QueryResult> {
@@ -116,6 +116,11 @@ public final class QueryResult implements Itemizer<QueryResult> {
 	@Override
 	public final int getIndex() {
 		return index;
+	}
+
+	@Override
+	public final int getSize() {
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -573,7 +578,7 @@ public final class QueryResult implements Itemizer<QueryResult> {
 
 	/**
 	 * Returns an <code>int[]</code> based on the column labels submitted.
-	 * 
+	 *
 	 * @param columnLabels The column labels.
 	 * @return an <code>int[]</code> based on the column labels submitted.
 	 */

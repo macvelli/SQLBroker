@@ -1,9 +1,8 @@
 package org.sqlbroker.helper;
 
-import root.data.structure.ListArray;
-import root.lang.Characters;
+import root.adt.ListArray;
 import root.lang.StringExtractor;
-import root.util.Safe;
+import root.util.Root;
 
 public final class Update extends Conditional<Update> {
 
@@ -41,7 +40,7 @@ public final class Update extends Conditional<Update> {
 
 	public final Update set(final String columnName, final Object value) {
 		if (params.getSize() > 0) {
-			buf.append(Characters.separator);
+			buf.addSeparator();
 		}
 
 		buf.append(columnName).append(" = ?");
@@ -51,7 +50,7 @@ public final class Update extends Conditional<Update> {
 	}
 
 	public final Update set(final String columnName, final Object oldVal, final Object newVal) {
-		if (Safe.notEqual(oldVal, newVal)) {
+		if (Root.notEqual(oldVal, newVal)) {
 			audits.add(new Audit(columnName, oldVal, newVal));
 			return set(columnName, newVal);
 		}
@@ -59,4 +58,4 @@ public final class Update extends Conditional<Update> {
 		return this;
 	}
 
-}
+} // End Update

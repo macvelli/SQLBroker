@@ -18,19 +18,18 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 
-import root.data.structure.ListExtractable;
+import root.adt.ListExtractable;
 import root.jdbc.SqlType;
-import root.lang.Characters;
 import root.lang.Extractable;
 import root.lang.StringExtractor;
 
 /**
  * - Does not include @Deprecated methods such as <code>void setUnicodeStream()</code>.
- * 
+ *
  * TODO:
  * 		+ Search for SQLException, there shouldn't be any until the Value classes (done)
  * 		+ Go to beginning of Value class declarations and search for index, there shouldn't be any in the Value classes (done)
- * 
+ *
  * @author esmith
  */
 public final class Parameters implements Extractable {
@@ -359,8 +358,9 @@ public final class Parameters implements Extractable {
 	}
 
 	@Override
-	public final void extract(final Characters chars) {
-		chars.append("Parameters:").append(values);
+	public final void extract(final StringExtractor extractor) {
+		extractor.append("Parameters:");
+		values.extract(extractor);
 	}
 
 	@Override
@@ -399,8 +399,8 @@ public final class Parameters implements Extractable {
 		}
 
 		@Override
-		public final void extract(final Characters chars) {
-			chars.append(a);
+		public final void extract(final StringExtractor extractor) {
+			extractor.append(a);
 		}
 
 	}	// End ArrayValue
@@ -432,8 +432,8 @@ public final class Parameters implements Extractable {
 		}
 
 		@Override
-		public final void extract(final Characters chars) {
-			chars.append(is);
+		public final void extract(final StringExtractor extractor) {
+			extractor.append(is);
 		}
 
 	}	// End AsciiStreamValue
@@ -453,8 +453,8 @@ public final class Parameters implements Extractable {
 		}
 
 		@Override
-		public final void extract(final Characters chars) {
-			chars.append(b);
+		public final void extract(final StringExtractor extractor) {
+			extractor.append(b);
 		}
 
 	}	// End BigDecimalValue
@@ -486,8 +486,8 @@ public final class Parameters implements Extractable {
 		}
 
 		@Override
-		public final void extract(final Characters chars) {
-			chars.append(is);
+		public final void extract(final StringExtractor extractor) {
+			extractor.append(is);
 		}
 
 	}	// End BinaryStreamValue
@@ -533,11 +533,11 @@ public final class Parameters implements Extractable {
 		}
 
 		@Override
-		public final void extract(final Characters chars) {
+		public final void extract(final StringExtractor extractor) {
 			if (is == null) {
-				chars.append(b);
+				extractor.append(b);
 			} else {
-				chars.append(is);
+				extractor.append(is);
 			}
 		}
 
@@ -558,8 +558,8 @@ public final class Parameters implements Extractable {
 		}
 
 		@Override
-		public final void extract(final Characters chars) {
-			chars.append(b);
+		public final void extract(final StringExtractor extractor) {
+			extractor.append(b);
 		}
 
 	}	// End BooleanValue
@@ -579,8 +579,8 @@ public final class Parameters implements Extractable {
 		}
 
 		@Override
-		public final void extract(final Characters chars) {
-			chars.append(b);
+		public final void extract(final StringExtractor extractor) {
+			extractor.append(b);
 		}
 
 	}	// End ByteValue
@@ -600,8 +600,8 @@ public final class Parameters implements Extractable {
 		}
 
 		@Override
-		public final void extract(final Characters chars) {
-			chars.append(b);
+		public final void extract(final StringExtractor extractor) {
+			extractor.append(b);
 		}
 
 	}	// End ByteArrayValue
@@ -633,8 +633,8 @@ public final class Parameters implements Extractable {
 		}
 
 		@Override
-		public final void extract(final Characters chars) {
-			chars.append(r);
+		public final void extract(final StringExtractor extractor) {
+			extractor.append(r);
 		}
 
 	}	// End CharacterStreamValue
@@ -680,11 +680,11 @@ public final class Parameters implements Extractable {
 		}
 
 		@Override
-		public final void extract(final Characters chars) {
+		public final void extract(final StringExtractor extractor) {
 			if (reader == null) {
-				chars.append(c);
+				extractor.append(c);
 			} else {
-				chars.append(reader);
+				extractor.append(reader);
 			}
 		}
 
@@ -717,8 +717,8 @@ public final class Parameters implements Extractable {
 		}
 
 		@Override
-		public final void extract(final Characters chars) {
-			chars.append(d);
+		public final void extract(final StringExtractor extractor) {
+			extractor.append(d);
 		}
 
 	}	// End DateValue
@@ -738,8 +738,8 @@ public final class Parameters implements Extractable {
 		}
 
 		@Override
-		public final void extract(final Characters chars) {
-			chars.append(d);
+		public final void extract(final StringExtractor extractor) {
+			extractor.append(d);
 		}
 
 	}	// End DoubleValue
@@ -759,8 +759,8 @@ public final class Parameters implements Extractable {
 		}
 
 		@Override
-		public final void extract(final Characters chars) {
-			chars.append(f);
+		public final void extract(final StringExtractor extractor) {
+			extractor.append(f);
 		}
 
 	}	// End FloatValue
@@ -780,8 +780,8 @@ public final class Parameters implements Extractable {
 		}
 
 		@Override
-		public final void extract(final Characters chars) {
-			chars.append(j);
+		public final void extract(final StringExtractor extractor) {
+			extractor.append(j);
 		}
 
 	}	// End IntegerValue
@@ -801,8 +801,8 @@ public final class Parameters implements Extractable {
 		}
 
 		@Override
-		public final void extract(final Characters chars) {
-			chars.append(l);
+		public final void extract(final StringExtractor extractor) {
+			extractor.append(l);
 		}
 
 	}	// End LongValue
@@ -834,8 +834,8 @@ public final class Parameters implements Extractable {
 		}
 
 		@Override
-		public final void extract(final Characters chars) {
-			chars.append(reader);
+		public final void extract(final StringExtractor extractor) {
+			extractor.append(reader);
 		}
 
 	}	// End NCharacterStreamValue
@@ -881,11 +881,11 @@ public final class Parameters implements Extractable {
 		}
 
 		@Override
-		public final void extract(final Characters chars) {
+		public final void extract(final StringExtractor extractor) {
 			if (reader == null) {
-				chars.append(c);
+				extractor.append(c);
 			} else {
-				chars.append(reader);
+				extractor.append(reader);
 			}
 		}
 
@@ -906,8 +906,8 @@ public final class Parameters implements Extractable {
 		}
 
 		@Override
-		public final void extract(final Characters chars) {
-			chars.append(s);
+		public final void extract(final StringExtractor extractor) {
+			extractor.append(s);
 		}
 
 	}	// End NStringValue
@@ -927,8 +927,8 @@ public final class Parameters implements Extractable {
 		}
 
 		@Override
-		public final void extract(final Characters chars) {
-			chars.append(t);
+		public final void extract(final StringExtractor extractor) {
+			extractor.append(t);
 		}
 
 	}	// End NullValue
@@ -974,8 +974,8 @@ public final class Parameters implements Extractable {
 		}
 
 		@Override
-		public final void extract(final Characters chars) {
-			chars.append(o);
+		public final void extract(final StringExtractor extractor) {
+			extractor.append(o);
 		}
 
 	}	// End ObjectValue
@@ -995,8 +995,8 @@ public final class Parameters implements Extractable {
 		}
 
 		@Override
-		public final void extract(final Characters chars) {
-			chars.append(r);
+		public final void extract(final StringExtractor extractor) {
+			extractor.append(r);
 		}
 
 	}	// End RefValue
@@ -1016,8 +1016,8 @@ public final class Parameters implements Extractable {
 		}
 
 		@Override
-		public final void extract(final Characters chars) {
-			chars.append(r);
+		public final void extract(final StringExtractor extractor) {
+			extractor.append(r);
 		}
 
 	}	// End RowIdValue
@@ -1037,8 +1037,8 @@ public final class Parameters implements Extractable {
 		}
 
 		@Override
-		public final void extract(final Characters chars) {
-			chars.append(s);
+		public final void extract(final StringExtractor extractor) {
+			extractor.append(s);
 		}
 
 	}	// End ShortValue
@@ -1058,8 +1058,8 @@ public final class Parameters implements Extractable {
 		}
 
 		@Override
-		public final void extract(final Characters chars) {
-			chars.append(s);
+		public final void extract(final StringExtractor extractor) {
+			extractor.append(s);
 		}
 
 	}	// End SQLXMLValue
@@ -1079,8 +1079,8 @@ public final class Parameters implements Extractable {
 		}
 
 		@Override
-		public final void extract(final Characters chars) {
-			chars.append(s);
+		public final void extract(final StringExtractor extractor) {
+			extractor.append(s);
 		}
 
 	}	// End StringValue
@@ -1112,8 +1112,8 @@ public final class Parameters implements Extractable {
 		}
 
 		@Override
-		public final void extract(final Characters chars) {
-			chars.append(t);
+		public final void extract(final StringExtractor extractor) {
+			extractor.append(t);
 		}
 
 	}	// End TimeValue
@@ -1145,8 +1145,8 @@ public final class Parameters implements Extractable {
 		}
 
 		@Override
-		public final void extract(final Characters chars) {
-			chars.append(t);
+		public final void extract(final StringExtractor extractor) {
+			extractor.append(t);
 		}
 
 	}	// End TimestampValue
@@ -1166,10 +1166,10 @@ public final class Parameters implements Extractable {
 		}
 
 		@Override
-		public final void extract(final Characters chars) {
-			chars.append(url);
+		public final void extract(final StringExtractor extractor) {
+			extractor.append(url);
 		}
 
 	}	// End URLValue
 
-}
+} // End Parameters

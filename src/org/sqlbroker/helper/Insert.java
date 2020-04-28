@@ -1,6 +1,5 @@
 package org.sqlbroker.helper;
 
-import root.lang.Characters;
 import root.lang.StringExtractor;
 
 public final class Insert extends SQL {
@@ -20,7 +19,7 @@ public final class Insert extends SQL {
 
 	public final Insert column(final String columnName, final Object value) {
 		if (params.getSize() > 0) {
-			buf.append(Characters.separator);
+			buf.addSeparator();
 		}
 
 		buf.append(columnName);
@@ -42,7 +41,7 @@ public final class Insert extends SQL {
 
 	/**
 	 * TODO: Delete this method
-	 * 
+	 *
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -55,4 +54,4 @@ public final class Insert extends SQL {
 		System.out.println(stmt);
 	}
 
-}
+} // End Insert

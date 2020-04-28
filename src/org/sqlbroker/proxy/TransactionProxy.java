@@ -6,8 +6,8 @@ import java.lang.reflect.Proxy;
 
 import org.sqlbroker.annotation.Txn;
 
-import root.data.structure.MapHashed;
-import root.jdbc.IsolationLevel;
+import root.adt.MapHashed;
+import root.jdbc.TransactionIsolationLevel;
 import root.jdbc.Transaction;
 import root.log.Log;
 
@@ -15,7 +15,7 @@ import root.log.Log;
  * TODO:
  * 		+ In the future where there are more options on the @Txn annotation, need
  * 		  to track the @Txn annotation itself to the method it applies to
- * 
+ *
  * @author esmith
  */
 public final class TransactionProxy implements InvocationHandler {
@@ -35,7 +35,7 @@ public final class TransactionProxy implements InvocationHandler {
 	private final Object delegate;
 
 	/**	The method names and associated isolation levels to run under a transaction		*/
-	private final MapHashed<String, IsolationLevel> transactionMap;
+	private final MapHashed<String, TransactionIsolationLevel> transactionMap;
 
 	// <><><><><><><><><><><><><><>< Constructors ><><><><><><><><><><><><><><>
 
@@ -64,7 +64,7 @@ public final class TransactionProxy implements InvocationHandler {
 	// <><><><><><><><><><><><><><> Public Methods <><><><><><><><><><><><><><>
 
 	public final Object invoke(final Object proxy, final Method m, final Object[] args) throws Throwable {
-		final IsolationLevel isoLevel = transactionMap.get(m.getName());
+		final TransactionIsolationLevel isoLevel = transactionMap.get(m.getName());
 
 		if (isoLevel == null || Transaction.isActive()) {
 			// No transaction entry found or transaction already in progress, invoke method normally

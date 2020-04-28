@@ -5,7 +5,7 @@
 package org.sqlbroker;
 
 import root.log.Log;
-import root.util.Safe;
+import root.util.Root;
 
 public class Parameters_Old {
 
@@ -48,12 +48,12 @@ public class Parameters_Old {
 		if (!(o instanceof Parameters_Old))
 			return false;
 
-		return Safe.equals(values, ((Parameters_Old) o).values);
+		return Root.equals(values, ((Parameters_Old) o).values);
 	}
 
 	@Override
 	public int hashCode() {
-		return Safe.hashCode(values);
+		return Root.hashCode(values);
 	}
 
 	public int size() {
@@ -72,7 +72,7 @@ public class Parameters_Old {
 
 	@Override
 	public String toString() {
-		return Safe.toString(values, size);
+		return Root.toString(values, size);
 	}
 
-}	// End Parameters
+} // End Parameters_Old

@@ -1,32 +1,32 @@
 package org.sqlbroker;
 
-import root.data.structure.ListArray;
+import root.adt.ListArray;
+import root.clock.Profiler;
 import root.jdbc.PooledDataSource;
 import root.thread.Sync;
 import root.thread.ThreadPool;
-import root.timer.Watch;
 
 /**
- * 
+ *
  * @author esmith
  */
 public final class ConcurrentSQLBroker {
 
 	// <><><><><><><><><><><><><>< Class Attributes ><><><><><><><><><><><><><>
 
-	/** The SQLBroker to use for executing the queries									*/
+	/** The SQLBroker to use for executing the queries                       */
 	private final SQLBroker						broker;
 
 	private final ThreadPool					pool;
 
 	private final ListArray<ConcurrentQuery>	queries;
 
-	private final Watch							t;
+	private final Profiler						t;
 
 	// <><><><><><><><><><><><><><>< Constructors ><><><><><><><><><><><><><><>
 
 	public ConcurrentSQLBroker(final PooledDataSource dataSource, final ThreadPool threadPool) {
-		t = new Watch();
+		t = new Profiler("ConcurrentSQLBroker");
 		broker = new SQLBroker(dataSource);
 		queries = new ListArray<>();
 		pool = threadPool;

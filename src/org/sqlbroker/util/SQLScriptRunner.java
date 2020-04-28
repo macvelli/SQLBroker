@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Properties;
 
 import org.sqlbroker.BatchResult;
 import org.sqlbroker.SQLBroker;
@@ -49,8 +50,14 @@ public final class SQLScriptRunner {
 		broker = new SQLBroker(dataSource);
 	}
 
-	public SQLScriptRunner(final String driverName, final String conURL, final String username, final String password) {
-		this(new PooledDataSource(driverName, conURL, username, password, 1));
+	public SQLScriptRunner(final String driverName, final String url, final String username, final String password) {
+		final Properties dbProperties = new Properties();
+		dbProperties.setProperty("user", username);
+		dbProperties.setProperty("password", password);
+
+		final PooledDataSource dataSource = new PooledDataSource(driverName, url, 1, dbProperties);
+		this.setDBMetaData(dataSource);
+		broker = new SQLBroker(dataSource);
 	}
 
 	// <><><><><><><><><><><><><><> Public Methods <><><><><><><><><><><><><><>

@@ -1,6 +1,6 @@
 package org.sqlbroker;
 
-import root.lang.ParamStr;
+import root.lang.ParamString;
 
 public final class UpdateResult {
 
@@ -18,11 +18,11 @@ public final class UpdateResult {
 
 	public final void expect(final int rowCount) {
 		if (this.rowCount != rowCount)
-			throw new AssertionError(ParamStr.format("Expected: {P} Actual: {P}", rowCount, this.rowCount));
+			throw new AssertionError(ParamString.formatMsg("Expected: {P} Actual: {P}", rowCount, this.rowCount));
 	}
 
 	public final int rowCount() {
 		return rowCount;
 	}
 
-}
+} // End UpdateResult
